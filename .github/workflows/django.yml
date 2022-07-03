@@ -1,10 +1,8 @@
 name: Aplicaçãoo Django
 
 on: [push]
-
 jobs:
-  runs-on: ubuntu-latest
-    
+  runs-on: ubuntu-latest  
   steps:
   - uses: actions/checkout@v3
   - name: Set up Python
