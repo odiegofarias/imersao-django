@@ -19,5 +19,4 @@ jobs:
     - name: Instalando pytest
       run: pip install pytest
     - name: Rodar testes automáticos
-      run: pytest webdev
-      run: pytest tarefas
+      run: pytest webdev tarefas
