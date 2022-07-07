@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from tarefas.forms import TarefaNovaForm
+from tarefas.forms import TarefaNovaForm, TarefaForm
 from django.urls import reverse
 from tarefas.models import Tarefa
 
@@ -17,8 +17,32 @@ def index(request):
             return HttpResponseRedirect(reverse('tarefas:index'))
         else:
             tarefas_pendentes = Tarefa.objects.filter(feita=False).all()
-            return render(request, 'tarefas/index.html', {'form': form, 'tarefas_pendentes': tarefas_pendentes}, status=400)
-            
-    tarefas_pendentes = Tarefa.objects.filter(feita=False).all()
-    return render(request, 'tarefas/index.html', {'tarefas_pendentes': tarefas_pendentes})
+            tarefas_feitas = Tarefa.objects.filter(feita=True).all()
+            return render(
+                request, 'tarefas/index.html', 
+                {
+                    'form': form, 
+                    'tarefas_pendentes': tarefas_pendentes,
+                    'tarefas_feitas': tarefas_feitas,
+                }, 
+                status=400
+            )
 
+    tarefas_pendentes = Tarefa.objects.filter(feita=False).all()
+    tarefas_feitas = Tarefa.objects.filter(feita=True).all()
+    return render(
+        request, 'tarefas/index.html', 
+        {
+            'tarefas_pendentes': tarefas_pendentes,
+            'tarefas_feitas': tarefas_feitas,
+        }
+    )
+
+
+def detalhe(request, tarefa_id):
+    tarefa = Tarefa.objects.get(id=tarefa_id)
+    form = TarefaForm(request.POST, instance=tarefa)
+    if form.is_valid():
+        form.save()
+
+    return HttpResponseRedirect(reverse('tarefas:index'))

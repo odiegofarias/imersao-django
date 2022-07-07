@@ -13,26 +13,39 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="mt-7 text-center">Lista de Tarefas</h1>
+            <h1 class="mt-7 text-center">Lista de Tarefas</h1>
 
-                <form action="{% url 'tarefas:index' %}" method="post">
+            <form action="{% url 'tarefas:index' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome">
+                    <button type="submit" class="btn btn-primary" id="button-addon2">Salvar</button>
+                </div>
+                <small class="form-text text_muted">{{ form.nome.errors }}</small>
+            </form>
+
+            <div class="col-md-6">
+                <h2 class="text-center">Tarefas Pendentes</h2>
+                {% for tarefa in tarefas_pendentes %}
+                <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome">
-                        <button type="submit" class="btn btn-primary" id="button-addon2">Salvar</button>
+                        <input type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome" required="required" value=" {{ tarefa.nome }}">
+                        <button type="submit" class="btn btn-success" id="button-addon2">Marcar como feita</button>
+                        <input type="hidden" value="checked" name="feita">
                     </div>
-                    <small class="form-text text_muted">{{ form.nome.errors }}</small>
                 </form>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h2 class="mt-7 text-center">Tarefas Concluídas</h2>
 
-                <h2 class="mt-7 text-center">Tarefas Pendentes</h2>
-                {% for tarefa in tarefas_pendentes %}
-                    <form>
+                {% for tarefa in tarefas_feitas %}
+                    <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                        {% csrf_token %}
                         <div class="input-group mb-3">
-                            <div class="input-group-text">
-                              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox para tarefa">
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input para tarefa" value="{{ tarefa.nome }}">
+                            <input type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome" required="required" value=" {{ tarefa.nome }}">
+                            <button type="submit" class="btn btn-warning" id="button-addon2">Marcar como Pendente</button>
                         </div>
                     </form>
                 {% endfor %}
