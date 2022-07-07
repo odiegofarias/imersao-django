@@ -14,19 +14,31 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="mt-5 text-center">Lista de Tarefas</h1>
+                <h1 class="mt-7 text-center">Lista de Tarefas</h1>
 
                 <form action="{% url 'tarefas:index' %}" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome">
                         <button type="submit" class="btn btn-primary" id="button-addon2">Salvar</button>
-                      </div>
+                    </div>
+                    <small class="form-text text_muted">{{ form.nome.errors }}</small>
                 </form>
+
+                <h2 class="mt-7 text-center">Tarefas Pendentes</h2>
+                {% for tarefa in tarefas_pendentes %}
+                    <form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-text">
+                              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox para tarefa">
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input para tarefa" value="{{ tarefa.nome }}">
+                        </div>
+                    </form>
+                {% endfor %}
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
