@@ -40,9 +40,16 @@ def index(request):
 
 
 def detalhe(request, tarefa_id):
-    tarefa = Tarefa.objects.get(id=tarefa_id)
-    form = TarefaForm(request.POST, instance=tarefa)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        tarefa = Tarefa.objects.get(id=tarefa_id)
+        form = TarefaForm(request.POST, instance=tarefa)
+        if form.is_valid():
+            form.save()
 
+    return HttpResponseRedirect(reverse('tarefas:index'))
+
+
+def apagar(request, tarefa_id):
+    if request.method == 'POST':
+        Tarefa.objects.filter(id=tarefa_id).delete()
     return HttpResponseRedirect(reverse('tarefas:index'))
