@@ -2,6 +2,9 @@ name: Aplicação Django
 
 on: [push]
 
+env:
+  install:
+    - cp contrib/env-sample .env
 jobs:
   build:
     runs-on: ubuntu-latest
