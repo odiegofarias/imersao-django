@@ -21,4 +21,4 @@ jobs:
       run: pytest webdev tarefas
     - name: Declarando váriavel de ambiente
       env: # Ou como uma variável de ambiente
-        super_secret: ${{ secrets.DEBUG }}
+        DEBUG: ${{ secrets.DEBUG }}
