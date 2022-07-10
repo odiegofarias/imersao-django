@@ -19,6 +19,8 @@ jobs:
         pip install pytest 
     - name: Rodar testes automáticos
       run: pytest webdev tarefas
-    - name: Declarando váriavel de ambiente
-      env: # Ou como uma variável de ambiente
+    - name: Hello world action
+      with: # Set the secret as an input
+        DEBUG: ${{ secrets.DEBUG }}
+      env: # Or as an environment variable
         DEBUG: ${{ secrets.DEBUG }}
