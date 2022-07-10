@@ -2,12 +2,12 @@ name: Aplicação Django
 
 on: [push]
 
-env:
-  install:
-    - cp contrib/env-sample .env
 jobs:
   build:
     runs-on: ubuntu-latest
+  
+  env:
+    - cp contrib/env-sample .env
 
     steps:
     - uses: actions/checkout@v3
