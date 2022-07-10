@@ -2,9 +2,6 @@ name: Aplicação Django
 
 on: [push]
 
-env:
-    - cp contrib/env-sample .env
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,3 +19,6 @@ jobs:
         pip install pytest 
     - name: Rodar testes automáticos
       run: pytest webdev tarefas
+    - name: Declarando váriavel de ambiente
+      env: # Ou como uma variável de ambiente
+        super_secret: ${{ secrets.DEBUG }}
