@@ -4,6 +4,9 @@ on: [push]
 
 jobs:
   build:
+    env:
+      DEBUG: ${{ secrets.DEBUG }}
+
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +22,3 @@ jobs:
         pip install pytest 
     - name: Rodar testes automáticos
       run: pytest webdev tarefas
-    - name: Hello world action
-      with: # Set the secret as an input
-        DEBUG: ${{ secrets.DEBUG }}
-      env: # Or as an environment variable
-        DEBUG: ${{ secrets.DEBUG }}
