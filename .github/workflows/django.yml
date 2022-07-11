@@ -3,7 +3,7 @@ name: Aplicação Django
 on: [push]
 
 env:
-  DEBUG: ${{  }}
+  DEBUG: ${{ secrets.DEBUG }}
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
         python-version: '3.10.5'
     - name: Environments variables
       env:
-        DEBUG: ${{ secrets.DEBUG }}
+        DEBUG: ${{ secrets.DEBUG }} 
       run: |
         echo $DEBUG
     - name: Install dependencies
