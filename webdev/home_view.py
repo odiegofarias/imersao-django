@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
 
-# redirecionando para tarefass
+# redirecionando para tarefas
 def home(request):
     return HttpResponseRedirect(reverse('tarefas:index'))
