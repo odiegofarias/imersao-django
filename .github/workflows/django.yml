@@ -14,6 +14,9 @@ jobs:
       with:
         python-version: '3.10.5'
     - name: Variável de ambiente
+    - name: Hello world action
+      with: # Configura o segredo como uma entrada
+        DEBUG: ${{ secrets.DEBUG }}
       env: # Ou como uma variável de ambiente
         DEBUG: ${{ secrets.DEBUG }}
     - name: Install dependencies
