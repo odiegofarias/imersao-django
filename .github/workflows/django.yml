@@ -2,6 +2,9 @@ name: Aplicação Django
 
 on: [push]
 
+env:
+  DEBUG: ${{ secrets.DEBUG }}
+
 jobs:
   build:
 
