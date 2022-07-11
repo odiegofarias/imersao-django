@@ -5,7 +5,7 @@ on: [push]
 env:
   DEBUG: ${{ secrets.DEBUG }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  ALOOWED_HOSTS: ${{ secrets.ALOOWED_HOSTS }}
+  ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
 
 jobs:
   build:
