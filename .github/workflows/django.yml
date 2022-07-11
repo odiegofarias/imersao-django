@@ -21,7 +21,8 @@ jobs:
     - name: Environments variables
       env:
         DEBUG: ${{ secrets.DEBUG }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }} 
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
       run: |
         echo $DEBUG
         echo $SECRET_KEY
