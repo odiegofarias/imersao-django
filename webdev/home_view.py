@@ -1,5 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 def home(request):
-    return HttpResponse('Olá, Django PRO')
+    return HttpResponseRedirect(reverse('tarefas:index'))
