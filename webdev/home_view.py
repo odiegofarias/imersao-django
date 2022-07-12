@@ -1,5 +1,5 @@
 from django.http import HttpResponse
 
 
-def home(request):
-    return HttpResponse(request, HttpResponse('Bem vindo Django PRO'))
+def index(request):
+    return HttpResponse(request, 'Olá, Django PRO')
