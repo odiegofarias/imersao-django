@@ -1,6 +1,5 @@
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.http import HttpResponse
 
-# redirecionando para tarefas
+
 def home(request):
-    return HttpResponseRedirect(reverse('tarefas:index'))
+    return HttpResponse(request, HttpResponse('Bem vindo Django PRO'))
